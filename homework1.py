@@ -30,6 +30,9 @@ recordsLeft = round(januaryData.shape[0]/beforeOutlierRemoval,2)
 print(f"Q3. The fraction of records left after dropping outliers is: {recordsLeft}")
 
 catVars = ['PULocationID','DOLocationID']
+for var in catVars:
+    januaryData.loc[:,var] = [str(i) for i in januaryData[var]]
+    februaryData.loc[:,var] = [str(i) for i in februaryData[var]]
 januaryDataSubsetDict = januaryData[catVars].T.to_dict().values()
 februaryDataSubsetDict = februaryData[catVars].T.to_dict().values()
 vectorizer = DictVectorizer()
